@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://player/initial_player_spawner.gd" type="Script" id=1]
+
+[node name="Node" type="Node"]
+
+[node name="InitialPlayerSpawner" type="Node2D" parent="."]
+position = Vector2( 228, 176 )
+script = ExtResource( 1 )
+
+[node name="Players" type="Node" parent="InitialPlayerSpawner"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 439, 0 )
+scale = Vector2( -1, 1 )
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 0, -2 )
+polygon = PoolVector2Array( 224, 192, 264, 192, 276, 190, 283, 188, 290, 185, 296, 182, 302, 177, 308, 172, 314, 165, 319, 158, 323, 148, 324, 140, 324, 120, 324, 104, 327, 92, 332, 82, 337, 74, 348, 62, 360, 54, 371, 49, 384, 46, 396, 45, 396, 120, 344, 120, 344, 208, 0, 208, 0, 192 )

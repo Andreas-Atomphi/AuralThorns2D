@@ -1,0 +1,568 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://player/states/idle.gd" type="Script" id=1]
+[ext_resource path="res://characters/character.gd" type="Script" id=2]
+[ext_resource path="res://player/player.gd" type="Script" id=3]
+[ext_resource path="res://characters/sonic/sonic.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://scripts/classes/state_machine.gd" type="Script" id=5]
+[ext_resource path="res://player/states/waking.gd" type="Script" id=6]
+[ext_resource path="res://characters/character_values.gd" type="Script" id=7]
+
+[sub_resource type="Resource" id=39]
+script = ExtResource( 7 )
+acc = 168.75
+dec = 1800.0
+frc = 168.75
+top_spd = 460.0
+grv = 21.875
+slp = 300.0
+slp_roll_up = 210.75
+slp_roll_down = 31.25
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeTransition" id=31]
+input_count = 4
+input_0/name = "airbone"
+input_0/auto_advance = true
+input_1/name = "pushed_by_spring"
+input_1/auto_advance = false
+input_2/name = "throwed"
+input_2/auto_advance = false
+input_3/name = "drop_dash_charge"
+input_3/auto_advance = false
+
+[sub_resource type="AnimationNodeTimeScale" id=32]
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "Rolling"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+
+[sub_resource type="AnimationNodeTransition" id=27]
+input_count = 6
+input_0/name = "walking"
+input_0/auto_advance = false
+input_1/name = "jogging"
+input_1/auto_advance = false
+input_2/name = "running"
+input_2/auto_advance = false
+input_3/name = "max_speed_running"
+input_3/auto_advance = false
+input_4/name = "rolling"
+input_4/auto_advance = false
+input_5/name = "skidding"
+input_5/auto_advance = false
+
+[sub_resource type="AnimationNodeTimeScale" id=26]
+
+[sub_resource type="AnimationNodeTimeScale" id=16]
+
+[sub_resource type="AnimationNodeTransition" id=28]
+input_count = 2
+input_0/name = "stopped"
+input_0/auto_advance = false
+input_1/name = "moving"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "Jogging"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+
+[sub_resource type="AnimationNodeTimeScale" id=13]
+
+[sub_resource type="AnimationNodeTransition" id=14]
+input_count = 3
+input_0/name = "ground"
+input_0/auto_advance = false
+input_1/name = "air"
+input_1/auto_advance = false
+input_2/name = "char_specific"
+input_2/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "MaxSpeedRunning"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "Rolling"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "Running"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+
+[sub_resource type="AnimationNodeTransition" id=17]
+input_count = 5
+input_0/name = "idle"
+input_0/auto_advance = false
+input_1/name = "looking_up"
+input_1/auto_advance = false
+input_2/name = "crouching"
+input_2/auto_advance = false
+input_3/name = "spin_dash"
+input_3/auto_advance = false
+input_4/name = "pushing"
+input_4/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "Walking"
+
+[sub_resource type="AnimationNodeBlendTree" id=15]
+graph_offset = Vector2( -136.176, -22.1019 )
+nodes/Idle/node = SubResource( 12 )
+nodes/Idle/position = Vector2( -1706.67, -613.333 )
+nodes/air_state/node = SubResource( 31 )
+nodes/air_state/position = Vector2( -1066.67, 506.667 )
+nodes/air_time_scale/node = SubResource( 32 )
+nodes/air_time_scale/position = Vector2( -800, 293.333 )
+nodes/airbone/node = SubResource( 33 )
+nodes/airbone/position = Vector2( -1333.33, 453.333 )
+nodes/crouching/node = SubResource( 18 )
+nodes/crouching/position = Vector2( -1706.67, -400 )
+nodes/drop_dash_charge/node = SubResource( 36 )
+nodes/drop_dash_charge/position = Vector2( -1333.33, 773.333 )
+nodes/ground_moving_state/node = SubResource( 27 )
+nodes/ground_moving_state/position = Vector2( -1386.67, 80 )
+nodes/ground_moving_time_scale/node = SubResource( 26 )
+nodes/ground_moving_time_scale/position = Vector2( -1093.33, -26.6667 )
+nodes/ground_stopped_time_scale/node = SubResource( 16 )
+nodes/ground_stopped_time_scale/position = Vector2( -1093.33, -240 )
+nodes/ground_transition/node = SubResource( 28 )
+nodes/ground_transition/position = Vector2( -800, -160 )
+nodes/jogging/node = SubResource( 23 )
+nodes/jogging/position = Vector2( -1706.67, 53.3333 )
+nodes/looking_up/node = SubResource( 19 )
+nodes/looking_up/position = Vector2( -1706.67, -506.667 )
+nodes/main_time_scale/node = SubResource( 13 )
+nodes/main_time_scale/position = Vector2( -186.667, 106.667 )
+nodes/main_transition/node = SubResource( 14 )
+nodes/main_transition/position = Vector2( -453.333, 80 )
+nodes/max_speed_running/node = SubResource( 22 )
+nodes/max_speed_running/position = Vector2( -1733.33, 266.667 )
+nodes/output/position = Vector2( 26.6667, 133.333 )
+nodes/pushed_by_spring/node = SubResource( 34 )
+nodes/pushed_by_spring/position = Vector2( -1333.33, 560 )
+nodes/pushing/node = SubResource( 37 )
+nodes/pushing/position = Vector2( -1706.67, -186.667 )
+nodes/rolling/node = SubResource( 29 )
+nodes/rolling/position = Vector2( -1706.67, 373.333 )
+nodes/running/node = SubResource( 24 )
+nodes/running/position = Vector2( -1706.67, 160 )
+nodes/skidding/node = SubResource( 30 )
+nodes/skidding/position = Vector2( -1706.67, 480 )
+nodes/spin_dash/node = SubResource( 21 )
+nodes/spin_dash/position = Vector2( -1706.67, -293.333 )
+nodes/stopped_state/node = SubResource( 17 )
+nodes/stopped_state/position = Vector2( -1386.67, -480 )
+nodes/throwed/node = SubResource( 35 )
+nodes/throwed/position = Vector2( -1333.33, 666.667 )
+nodes/walking/node = SubResource( 25 )
+nodes/walking/position = Vector2( -1706.67, -53.3333 )
+node_connections = [ "output", 0, "main_time_scale", "air_state", 0, "airbone", "air_state", 1, "pushed_by_spring", "air_state", 2, "throwed", "air_state", 3, "drop_dash_charge", "air_time_scale", 0, "air_state", "ground_moving_state", 0, "walking", "ground_moving_state", 1, "jogging", "ground_moving_state", 2, "running", "ground_moving_state", 3, "max_speed_running", "ground_moving_state", 4, "rolling", "ground_moving_state", 5, "skidding", "ground_moving_time_scale", 0, "ground_moving_state", "ground_stopped_time_scale", 0, "stopped_state", "ground_transition", 0, "ground_stopped_time_scale", "ground_transition", 1, "ground_moving_time_scale", "main_time_scale", 0, "main_transition", "main_transition", 0, "ground_transition", "main_transition", 1, "air_time_scale", "stopped_state", 0, "Idle", "stopped_state", 1, "looking_up", "stopped_state", 2, "crouching", "stopped_state", 3, "spin_dash", "stopped_state", 4, "pushing" ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Idle"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Skin:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Skin:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Skin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3.90625e-05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Jogging"
+length = 0.833333
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Skin:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "jogging" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Skin:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75 ),
+"transitions": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"update": 1,
+"values": [ Vector2( -7, 3 ), Vector2( -6, 2 ), Vector2( -3, 3 ), Vector2( -5, 3 ), Vector2( -6, 2 ), Vector2( -7, 2 ), Vector2( -3, 2 ), Vector2( -3, 3 ), Vector2( -6, 3 ), Vector2( -6, 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Skin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "MaxSpeedRunning"
+length = 0.25
+loop = true
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Skin:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "max_speed_running" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Skin:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Skin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Skin:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Skin:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Skin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Rolling"
+loop = true
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Skin:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "rolling" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Skin:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Skin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 1, 3, 0, 4, 1, 5, 0, 6, 1, 7, 0, 8, 1, 9 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Running"
+length = 0.666667
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Skin:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "running" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Skin:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
+"transitions": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 ),
+"update": 0,
+"values": [ Vector2( -6, 4 ), Vector2( -6, 3 ), Vector2( -6, 3 ), Vector2( -4, 3 ), Vector2( -5, 4 ), Vector2( -6, 3 ), Vector2( -6, 3 ), Vector2( -5, 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Skin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Walking"
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Skin:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "walking" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Skin:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
+"transitions": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 2 ), Vector2( -4, 2 ), Vector2( -5, 2 ), Vector2( -4, 2 ), Vector2( -4, 1 ), Vector2( 1, 1 ), Vector2( 0, 2 ), Vector2( -3, 2 ), Vector2( -4, 2 ), Vector2( -1, 2 ), Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Skin:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 10, 20 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 1 )
+
+[node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Character" type="Node2D" parent="."]
+script = ExtResource( 2 )
+values = SubResource( 39 )
+
+[node name="Animator" type="AnimationTree" parent="Character"]
+tree_root = SubResource( 15 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/air_state/current = 0
+parameters/air_time_scale/scale = 1.0
+parameters/ground_moving_state/current = 0
+parameters/ground_moving_time_scale/scale = 1.0
+parameters/ground_stopped_time_scale/scale = 1.0
+parameters/ground_transition/current = 0
+parameters/main_time_scale/scale = 1.0
+parameters/main_transition/current = 0
+parameters/stopped_state/current = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Character/Animator"]
+anims/Idle = SubResource( 5 )
+anims/Jogging = SubResource( 9 )
+anims/MaxSpeedRunning = SubResource( 10 )
+anims/RESET = SubResource( 6 )
+anims/Rolling = SubResource( 11 )
+anims/Running = SubResource( 7 )
+anims/Walking = SubResource( 8 )
+
+[node name="Skin" type="AnimatedSprite" parent="Character"]
+position = Vector2( -15, -19 )
+frames = ExtResource( 4 )
+animation = "idle"
+centered = false
+
+[node name="BottomPos" type="Position2D" parent="Character"]
+position = Vector2( 0, 19 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Character"]
+position = Vector2( 0, 3 )
+enabled = true
+collision_mask = 2
+
+[node name="CharacterPos" type="Position2D" parent="."]
+
+[node name="MainShape" type="CollisionShape2D" parent="."]
+modulate = Color( 1, 0.63, 0.975333, 1 )
+shape = SubResource( 40 )
+
+[node name="MainShape2" type="CollisionShape2D" parent="."]
+visible = false
+modulate = Color( 1, 0.63, 0.975333, 1 )
+rotation = 1.5708
+shape = SubResource( 40 )
+disabled = true
+
+[node name="LeftGroundSensor" type="RayCast2D" parent="."]
+position = Vector2( -10, 0 )
+enabled = true
+cast_to = Vector2( 0, 40 )
+collision_mask = 2
+
+[node name="MiddleGroundSensor" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 40 )
+collision_mask = 2
+
+[node name="RightGroundSensor" type="RayCast2D" parent="."]
+position = Vector2( 10, 0 )
+enabled = true
+cast_to = Vector2( 0, 40 )
+collision_mask = 2
+
+[node name="LeftSlopeSensor" type="RayCast2D" parent="."]
+position = Vector2( -10, 10 )
+rotation = 3.14159
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 2
+
+[node name="RightSlopeSensor" type="RayCast2D" parent="."]
+position = Vector2( 10, 10 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 2
+
+[node name="ControlUnlockTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[connection signal="timeout" from="ControlUnlockTimer" to="." method="unlock_control"]
