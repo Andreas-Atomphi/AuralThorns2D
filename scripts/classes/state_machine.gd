@@ -9,9 +9,9 @@ const ERR_TEXTS = {
 	ERR_INVALID_DATA: "Error: node %s is not a state"
 }
 
-export var initial_state : NodePath = @"Idle"
+export(NodePath) var initial_state : NodePath = @"Idle"
 
-var state : State
+var state : PlayerState
 var state_queued
 
 var _host
@@ -105,6 +105,10 @@ func _fsm_physics_update(delta):
 func _fsm_update(delta):
 	if state.is_updating():
 		state._update(_host, delta)
+
+
+func _fsm_input(event:InputEvent, actions:IGActions):
+	state._s_input(_host, event, actions)
 
 
 func _get_configuration_warning():

@@ -41,4 +41,4 @@ func _load_progress_data():
 	if PersistentDataHandler.data_exists(data_name):
 		pass
 	else:
-		PersistentDataHandler.save_data(data_name, loaded_data.progress)
+		PersistentDataHandler.save_data(data_name, {})

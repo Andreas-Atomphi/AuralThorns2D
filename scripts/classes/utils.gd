@@ -25,17 +25,8 @@ static func convert_action(action: String, p_id: int) -> String:
 
 
 # get all converted ig actions
-static func get_ig_actions(p_index:int) -> Dictionary:
-	return {
-		up = convert_action("ig_up", p_index),
-		left = convert_action("ig_left", p_index),
-		down = convert_action("ig_down", p_index),
-		right = convert_action("ig_right", p_index),
-		j1 = convert_action("ig_j1", p_index),
-		j2 = convert_action("ig_j2", p_index),
-		j3 = convert_action("ig_j3", p_index),
-		s = convert_action("ig_s", p_index),
-	}
+static func get_ig_actions(p_index:int) -> IGActions:
+	return IGActions.new(p_index)
 
 # Math
 
@@ -59,6 +50,7 @@ static func move_toward_angle(p_from: float, p_to: float, p_delta:float) -> floa
 	
 	return move_toward(p_from, p_to, -p_delta)
 
+
 static func to_urad(p_rad:float) -> float:
 	var rad := p_rad
 	while rad < 0:
@@ -68,7 +60,7 @@ static func to_urad(p_rad:float) -> float:
 	return rad
 
 
-static func collider_angle(p_ray:RayCast2D) -> float:
+static func collider_normal_to_angle(p_ray:RayCast2D) -> float:
 	if !p_ray.is_colliding():
 		return 0.0
 	return p_ray.get_collision_normal().angle_to(Vector2.UP)

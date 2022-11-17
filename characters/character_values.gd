@@ -2,22 +2,27 @@ extends Resource
 class_name CharacterPhysicsValues
 
 # Acceleration
-export(float) var acc : float = 168.75
+export(float) var acc : float = 281.25
 
 # Deceleration
 export(float) var dec : float = 1800.0
 
 # Friction
-export(float) var frc : float = 168.75
+export(float) var frc : float = 281.25
+
+export(float) var air_acc : float = 430.0
 
 # Top Speed
-export(float) var top_spd : float = 460
+export(float) var top_spd : float = 600.0
+
+# Jump force
+export(float) var jmp : float = 340.0
 
 # Gravity
-export(float) var grv : float = 21.875
+export(float) var grv : float = 757.5
 
 # normal Slope Factor
-export(float) var slp : float = 300
+export(float) var slp : float = 500.0
 
 # Slope Factor when is rolling up
 export(float) var slp_roll_up : float = 210.75
